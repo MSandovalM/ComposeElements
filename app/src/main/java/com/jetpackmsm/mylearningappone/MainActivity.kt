@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.jetpackmsm.mylearningappone.components.layouts.FirstExercise
+import com.jetpackmsm.mylearningappone.components.layouts.MyProgressBar
 import com.jetpackmsm.mylearningappone.ui.theme.MyLearningAppOneTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyLearningAppOneTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    FirstExercise(Modifier.padding(innerPadding))
+                    MyProgressBar(Modifier.padding(innerPadding))
                 }
             }
         }
