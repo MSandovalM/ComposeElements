@@ -1,0 +1,15 @@
+package com.jetpackmsm.mylearningappone.components.layouts
+
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+
+@Preview(showBackground = true)
+@Composable
+fun myFirstRow() {
+
+    Row (modifier = Modifier.fillMaxSize()) {  }
+
+}
