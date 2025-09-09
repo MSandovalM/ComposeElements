@@ -1,4 +1,4 @@
-package com.jetpackmsm.mylearningappone.components.layouts
+package com.jetpackmsm.mylearningappone.components
 
 import android.util.Log
 import androidx.compose.foundation.BorderStroke

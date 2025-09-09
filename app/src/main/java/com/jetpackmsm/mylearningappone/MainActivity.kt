@@ -11,8 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.jetpackmsm.mylearningappone.components.layouts.FirstExercise
-import com.jetpackmsm.mylearningappone.components.layouts.MyProgressBar
+import com.jetpackmsm.mylearningappone.components.MyProgressBar
 import com.jetpackmsm.mylearningappone.ui.theme.MyLearningAppOneTheme
 
 class MainActivity : ComponentActivity() {

@@ -1,4 +1,4 @@
-package com.jetpackmsm.mylearningappone.components.layouts
+package com.jetpackmsm.mylearningappone.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column

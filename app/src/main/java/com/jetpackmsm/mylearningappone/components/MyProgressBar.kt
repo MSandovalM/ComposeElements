@@ -1,4 +1,4 @@
-package com.jetpackmsm.mylearningappone.components.layouts
+package com.jetpackmsm.mylearningappone.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Arrangement
