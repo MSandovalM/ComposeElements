@@ -5,19 +5,28 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.jetpackmsm.mylearningappone.components.MyFloatingActionButton
 import com.jetpackmsm.mylearningappone.components.MyProgressBar
 import com.jetpackmsm.mylearningappone.components.MyTopAppBar
 import com.jetpackmsm.mylearningappone.ui.theme.MyLearningAppOneTheme
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,11 +34,20 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MyLearningAppOneTheme {
+                val snackbarHostState = remember { SnackbarHostState() }
+                val scope = rememberCoroutineScope()
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     topBar = {
                         MyTopAppBar()
-                    }) { innerPadding ->
+                    },
+                    snackbarHost = {
+                        SnackbarHost(hostState = snackbarHostState)
+                    },
+                    floatingActionButton = {
+                        MyFloatingActionButton()
+                    }
+                ) { innerPadding ->
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
@@ -37,7 +55,20 @@ class MainActivity : ComponentActivity() {
                             .padding(innerPadding),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text("Esta es mi Screen")
+                        Text("Esta es mi Screen", modifier = Modifier.clickable {
+                            scope.launch {
+                                val result = snackbarHostState.showSnackbar(
+                                    message = "Ejemplo",
+                                    actionLabel = "Deshacer"
+                                )
+
+                                if (result == SnackbarResult.ActionPerformed) {
+                                    // Pulso Deshacer
+                                } else {
+                                    // No pulsó nada
+                                }
+                            }
+                        })
                     }
                 }
             }
