@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.jetpackmsm.mylearningappone.components.MyFloatingActionButton
+import com.jetpackmsm.mylearningappone.components.MyNavigationBar
 import com.jetpackmsm.mylearningappone.components.MyProgressBar
 import com.jetpackmsm.mylearningappone.components.MyTopAppBar
 import com.jetpackmsm.mylearningappone.ui.theme.MyLearningAppOneTheme
@@ -46,7 +47,8 @@ class MainActivity : ComponentActivity() {
                     },
                     floatingActionButton = {
                         MyFloatingActionButton()
-                    }
+                    },
+                    bottomBar = { MyNavigationBar() }
                 ) { innerPadding ->
                     Box(
                         modifier = Modifier
