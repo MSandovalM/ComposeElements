@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.jetpackmsm.mylearningappone.components.MyAlertDialog
 import com.jetpackmsm.mylearningappone.components.MyFloatingActionButton
 import com.jetpackmsm.mylearningappone.components.MyModalDrawer
 import com.jetpackmsm.mylearningappone.components.MyNavigationBar
@@ -41,6 +42,7 @@ class MainActivity : ComponentActivity() {
                 val snackbarHostState = remember { SnackbarHostState() }
                 val scope = rememberCoroutineScope()
                 val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+                MyAlertDialog()
                 MyModalDrawer (drawerState) {
                     Scaffold(
                         modifier = Modifier.fillMaxSize(),
