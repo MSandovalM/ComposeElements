@@ -9,6 +9,11 @@ import androidx.navigation.toRoute
 import com.jetpackmsm.mylearningappone.components.navigation.examples.DetailScreen
 import com.jetpackmsm.mylearningappone.components.navigation.examples.HomeScreen
 import com.jetpackmsm.mylearningappone.components.navigation.examples.LoginScreen
+import com.jetpackmsm.mylearningappone.components.navigation.examples.SettingsScreen
+import com.jetpackmsm.mylearningappone.components.navigation.examples.model.SettingsModel
+import com.jetpackmsm.mylearningappone.components.navigation.types.createNavType
+import com.jetpackmsm.mylearningappone.components.navigation.types.settingsModelType
+import kotlin.reflect.typeOf
 
 @Composable
 fun NavigationWrapper(modifier: Modifier = Modifier) {
@@ -36,9 +41,20 @@ fun NavigationWrapper(modifier: Modifier = Modifier) {
         composable<Detail> { navBackStackEntry ->
             val detail: Detail = navBackStackEntry.toRoute()
             // detail.test
-            DetailScreen(detail.id, navigateToHome = {
-                navController.navigate(Home)
+            DetailScreen(id = detail.id, navigateToSettings = {
+                navController.navigate(Settings(it))
             })
+        }
+
+        composable<Settings>(typeMap = mapOf(typeOf<SettingsModel>() to createNavType<SettingsModel>())) {
+            navBackStackEntry ->
+            val settings = navBackStackEntry.toRoute<Settings>()
+           SettingsScreen(
+               settingsModel = settings.settingsModel,
+               navigateBack = { navController.navigate(Login) { // Esta es la manera correcta de regresar a la pantalla de home y quitar del stack las demas vistas
+                   popUpTo<Login>{inclusive = true} // Incluye el primer login que se creo, es decir que estamos recreando la pantalla con el inclusive
+               }}
+           )
         }
     }
 }

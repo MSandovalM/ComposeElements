@@ -1,6 +1,8 @@
 package com.jetpackmsm.mylearningappone
 
+import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -110,6 +112,12 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+//
+//    fun saveFile(context: Context, filename: String){
+//        Toast.makeText(context.applicationContext, "Toast", Toast.LENGTH_SHORT).show()
+//    }
+
 }
 
 @Composable
@@ -127,3 +135,4 @@ fun GreetingPreview() {
         Greeting("Aloha hawwaii")
     }
 }
+
