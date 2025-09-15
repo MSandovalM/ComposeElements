@@ -17,18 +17,24 @@ import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.jetpackmsm.mylearningappone.components.MyAlertDialog
+import com.jetpackmsm.mylearningappone.components.MyCustomDialog
 import com.jetpackmsm.mylearningappone.components.MyFloatingActionButton
 import com.jetpackmsm.mylearningappone.components.MyModalDrawer
 import com.jetpackmsm.mylearningappone.components.MyNavigationBar
 import com.jetpackmsm.mylearningappone.components.MyProgressBar
 import com.jetpackmsm.mylearningappone.components.MyTopAppBar
+import com.jetpackmsm.mylearningappone.components.model.PokemonCombat
+import com.jetpackmsm.mylearningappone.components.navigation.NavigationWrapper
 import com.jetpackmsm.mylearningappone.ui.theme.MyLearningAppOneTheme
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
@@ -42,49 +48,65 @@ class MainActivity : ComponentActivity() {
                 val snackbarHostState = remember { SnackbarHostState() }
                 val scope = rememberCoroutineScope()
                 val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-                MyAlertDialog()
-                MyModalDrawer (drawerState) {
-                    Scaffold(
-                        modifier = Modifier.fillMaxSize(),
-                        topBar = {
-                            MyTopAppBar {
-                                scope.launch {
-                                    drawerState.open()
-                                }
-                            }
-                        },
-                        snackbarHost = {
-                            SnackbarHost(hostState = snackbarHostState)
-                        },
-                        floatingActionButton = {
-                            MyFloatingActionButton()
-                        },
-                        bottomBar = { MyNavigationBar() }
-                    ) { innerPadding ->
-                        Box(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .background(Color.Cyan)
-                                .padding(innerPadding),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Text("Esta es mi Screen", modifier = Modifier.clickable {
-                                scope.launch {
-                                    val result = snackbarHostState.showSnackbar(
-                                        message = "Ejemplo",
-                                        actionLabel = "Deshacer"
-                                    )
 
-                                    if (result == SnackbarResult.ActionPerformed) {
-                                        // Pulso Deshacer
-                                    } else {
-                                        // No pulsó nada
-                                    }
-                                }
-                            })
-                        }
+                var showDialog by remember { mutableStateOf(false) }
+                val pokemonCombat = PokemonCombat("Charmeleon", "Gastly")
+
+                MyCustomDialog(
+                    showDialog = showDialog,
+                    pokemonCombat = pokemonCombat,
+                    onStartCombat = {
+                        showDialog = false
+                    },
+                    onDismissDialog = {
+                        showDialog = false
                     }
-                }
+                )
+                NavigationWrapper()
+
+//                MyAlertDialog()
+//                MyModalDrawer (drawerState) {
+//                    Scaffold(
+//                        modifier = Modifier.fillMaxSize(),
+//                        topBar = {
+//                            MyTopAppBar {
+//                                scope.launch {
+//                                    drawerState.open()
+//                                }
+//                            }
+//                        },
+//                        snackbarHost = {
+//                            SnackbarHost(hostState = snackbarHostState)
+//                        },
+//                        floatingActionButton = {
+//                            MyFloatingActionButton()
+//                        },
+//                        bottomBar = { MyNavigationBar() }
+//                    ) { innerPadding ->
+//                        Box(
+//                            modifier = Modifier
+//                                .fillMaxSize()
+//                                .background(Color.Cyan)
+//                                .padding(innerPadding),
+//                            contentAlignment = Alignment.Center
+//                        ) {
+//                            Text("Esta es mi Screen", modifier = Modifier.clickable {
+//                                scope.launch {
+//                                    val result = snackbarHostState.showSnackbar(
+//                                        message = "Ejemplo",
+//                                        actionLabel = "Deshacer"
+//                                    )
+//
+//                                    if (result == SnackbarResult.ActionPerformed) {
+//                                        // Pulso Deshacer
+//                                    } else {
+//                                        // No pulsó nada
+//                                    }
+//                                }
+//                            })
+//                        }
+//                    }
+//                }
             }
         }
     }
