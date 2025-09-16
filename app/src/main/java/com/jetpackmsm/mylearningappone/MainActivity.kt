@@ -35,6 +35,12 @@ import com.jetpackmsm.mylearningappone.components.MyModalDrawer
 import com.jetpackmsm.mylearningappone.components.MyNavigationBar
 import com.jetpackmsm.mylearningappone.components.MyProgressBar
 import com.jetpackmsm.mylearningappone.components.MyTopAppBar
+import com.jetpackmsm.mylearningappone.components.animations.FullAnimateAsState
+import com.jetpackmsm.mylearningappone.components.animations.MyAnimatedContent
+import com.jetpackmsm.mylearningappone.components.animations.MyAnimatedVisibility
+import com.jetpackmsm.mylearningappone.components.animations.MyContentSize
+import com.jetpackmsm.mylearningappone.components.animations.MyCrossFade
+import com.jetpackmsm.mylearningappone.components.animations.MyInfiniteTransition
 import com.jetpackmsm.mylearningappone.components.model.PokemonCombat
 import com.jetpackmsm.mylearningappone.components.navigation.NavigationWrapper
 import com.jetpackmsm.mylearningappone.ui.theme.MyLearningAppOneTheme
@@ -64,7 +70,13 @@ class MainActivity : ComponentActivity() {
                         showDialog = false
                     }
                 )
-                NavigationWrapper()
+                MyInfiniteTransition()
+//                MyContentSize()
+//                MyAnimatedContent()
+//                MyCrossFade()
+//                FullAnimateAsState()
+//                MyAnimatedVisibility()
+//                NavigationWrapper()
 
 //                MyAlertDialog()
 //                MyModalDrawer (drawerState) {
